@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head th:replace="fragments :: head"></head>
+    <body class="container">
+        <h1 th:text="${title}">Default Title</h1>
+
+        <nav th:replace="fragments :: navigation"></nav>
+        <br/>
+
+        <form method="post" style="max-width:600px;" th:object="${menu}">
+
+            <label>Prescriptions</label>
+            <select name="rxId">
+                <option th:each="rx : ${rxes}"
+                        th:value="${rx.id}"
+                        th:text="${rx.name}"></option>
+            </select>
+
+            <br/>
+            <br/>
+            <input type="submit" value="Add Prescription" />
+        </form>
+    </body>
+</html>

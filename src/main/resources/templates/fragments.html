@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}">My Prescriptions</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<nav th:fragment="navigation">
+    <a href="/rx">Home</a> |
+    <a href="/category">Categories</a> |
+    <a href="/menu">Menus</a>
+</nav>
+
+<nav th:fragment="rxnavigation">
+    <a href="/rx/add">Add</a> |
+    <a href="/rx/remove">Remove</a>
+</nav>
+
+</body>
+</html>

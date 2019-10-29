@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head th:replace="fragments :: head"></head>
+    <body class="container">
+        <h1 th:text="${title}">Default Title</h1>
+
+        <nav th:replace="fragments :: navigation"></nav>
+        <br/>
+
+        <p th:unless="${items.size()}">No prescriptions listed</p>
+
+        <form method="post">
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Rx #</th>
+                    <th>Category</th>
+                    <th>Doctor</th>
+                    <th>Doctor's Phone #</th>
+                    <th>Doctor's Website</th>
+                    <th>Pharmacy</th>
+                    <th>Pharmacy Phone #</th>
+                    <th>Pharmacy Website</th>
+                    <th>Description</th>
+                    <!--<th>Remove</th>-->
+                </tr>
+                <tr th:each="item : ${items}">
+                    <td th:text="${item.name}"></td>
+                    <td th:text="${item.description}"></td>
+                    <td th:text="${item.category.name}"></td>
+                </tr>
+            </table>
+
+            <a th:href="'/menu/add-item/' + ${idMenu}">Add Prescription</a>
+        </form>
+
+    </body>
+</html>

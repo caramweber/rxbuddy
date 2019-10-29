@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+<br/>
+<form method="post">
+    <table class="table">
+        <tr>
+            <th>Delete</th>
+            <th>Name</th>
+        </tr>
+        <tr th:each="rx : ${rxes}" >
+            <td>
+                <input type="checkbox"
+                       name="rxIds"
+                       th:value="${rx.id}"
+                       th:id="${rx.id}"/>
+            </td>
+            <td th:for="${rx.id}"
+                th:text="${rx.name}">
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Remove Prescription" />
+</form>
+
+</body>
+</html>
