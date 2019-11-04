@@ -12,6 +12,10 @@ public class User {
     private String username;
     private String email;
     @NotNull
+    private String firstName;
+    @NotNull
+    private String lastName;
+    @NotNull
     private String password;
     private int userId;
     private int nextId;
@@ -24,9 +28,11 @@ public class User {
         this.myDate = new Date();
     }
 
-    public User(String username, String email, String password) {
+    public User(String username, String firstName, String lastName, String email, String password) {
         this();
         this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
     }
@@ -61,5 +67,21 @@ public class User {
 
     public Date getMyDate() {
         return myDate;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
