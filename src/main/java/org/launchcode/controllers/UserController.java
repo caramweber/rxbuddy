@@ -22,7 +22,7 @@ public class UserController {
         return "user/index";
     }
 
-    // Request path: cheese/
+    // Request path: rx/
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String add(Model model) {
         User user = new User();

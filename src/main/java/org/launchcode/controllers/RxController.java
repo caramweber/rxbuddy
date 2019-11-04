@@ -45,7 +45,7 @@ public class RxController {
             @ModelAttribute  @Valid Rx newRx,
             Errors errors,
             @RequestParam int categoryId,
-            Model model){
+            Model model) {
 
         Category cat = categoryDao.findOne(categoryId);
         if (errors.hasErrors()) {
