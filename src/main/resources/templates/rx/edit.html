@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+<br/>
+<form method="post" style="max-width:600px;" th:object="${edit}" action="/rx/edit">
+    <div class="form-group">
+        <label th:for="name">Name</label>
+        <input class="form-control" th:field="*{name}" />
+        <span th:errors="*{name}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="rxnum">Rx #</label>
+        <input class="form-control" th:field="*{rxnum}" />
+        <span th:errors="*{rxnum}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="type">Category</label>
+        <select name="categoryId">
+            <option th:each="category : ${categories}"
+                    th:text="${category.name}"
+                    th:value="${category.id}">
+            </option>
+        </select>
+        <span th:errors="*{category}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="docname">Doctor</label>
+        <input class="form-control" th:field="*{docname}" />
+        <span th:errors="*{docname}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="docnum">Doctor Phone #</label>
+        <input class="form-control" th:field="*{docnum}" />
+        <span th:errors="*{docnum}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="docweb">Doctor Website</label>
+        <input class="form-control" th:field="*{docweb}" />
+        <span th:errors="*{docweb}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="pharmname">Pharmacy</label>
+        <input class="form-control" th:field="*{pharmname}" />
+        <span th:errors="*{pharmname}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="pharmnum">Pharmacy Phone #</label>
+        <input class="form-control" th:field="*{pharmnum}" />
+        <span th:errors="*{pharmnum}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="pharmweb">Pharmacy Website</label>
+        <input class="form-control" th:field="*{pharmweb}" />
+        <span th:errors="*{pharmweb}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="description">Description</label>
+        <input class="form-control" th:field="*{description}" />
+        <span th:errors="*{description}" class="error"></span>
+    </div>
+    <input type="hidden" id="editId" name="editId" th:value="${edit.getId()}"/>
+    <input type="submit" value="Edit Prescription" />
+</form>
+
+</body>
+</html>

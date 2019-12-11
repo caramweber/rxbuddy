@@ -23,6 +23,7 @@
         <th>Pharmacy Phone #</th>
         <th>Pharmacy Website</th>
         <th>Description</th>
+        <th></th>
     </tr>
 
     <tr th:each="rx : ${rxes}">
@@ -36,10 +37,12 @@
         <td th:text="${rx.pharmnum}"></td>
         <td th:text="${rx.pharmweb}"></td>
         <td th:text="${rx.description}"></td>
+        <td><a th:href="'/rx/edit/'+${rx.getId()}">Edit</a></td>
     </tr>
 
 </table>
 <a href="/rx/add">Add</a> |
-<a href="/rx/remove">Remove</a>
+<a href="/rx/remove">Remove</a> |
+
 </body>
 </html>

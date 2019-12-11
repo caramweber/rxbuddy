@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -74,6 +71,45 @@ public class RxController {
         }
 
         return "redirect:";
+    }
+
+    @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
+    public String edit(Model model, @PathVariable int id) {
+        Rx rx = rxDao.findOne(id);
+        model.addAttribute("categories", categoryDao.findAll());
+        model.addAttribute("edit", rx);
+        return "rx/edit";
+
+    }
+
+    @RequestMapping(value = "edit", method = RequestMethod.POST)
+    public String processEditForm(
+            @ModelAttribute  @Valid Rx newRx,
+            Errors errors,
+            @RequestParam int categoryId,
+            @RequestParam(value="editId") int editId,
+            Model model) {
+        Rx rx = rxDao.findOne(editId);
+        Category cat = categoryDao.findOne(categoryId);
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Add Prescription");
+            model.addAttribute("categories", categoryDao.findAll());
+            model.addAttribute("edit", rx);
+            return "rx/edit";
+        }
+        rx.setName(newRx.getName());
+        rx.setRxnum(newRx.getRxnum());
+        rx.setCategory(cat);
+        rx.setDescription(newRx.getDescription());
+        rx.setDocname(newRx.getDocname());
+        rx.setDocweb(newRx.getDocweb());
+        rx.setDocnum(newRx.getDocnum());
+        rx.setPharmname(newRx.getPharmname());
+        rx.setPharmweb(newRx.getPharmweb());
+        rx.setPharmnum(newRx.getPharmnum());
+        rxDao.save(rx);
+        return "redirect:";
+
     }
 
 
