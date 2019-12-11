@@ -27,8 +27,15 @@
 
     <tr th:each="rx : ${rxes}">
         <td th:text="${rx.name}"></td>
-        <td th:text="${rx.description}"></td>
+        <td th:text="${rx.rxnum}"></td>
         <td th:text="${rx.category.name}"></td>
+        <td th:text="${rx.docname}"></td>
+        <td th:text="${rx.docnum}"></td>
+        <td th:text="${rx.docweb}"></td>
+        <td th:text="${rx.pharmname}"></td>
+        <td th:text="${rx.pharmnum}"></td>
+        <td th:text="${rx.pharmweb}"></td>
+        <td th:text="${rx.description}"></td>
     </tr>
 
 </table>

@@ -56,9 +56,6 @@ public class Rx {
 
     public Rx() { }
 
-    @ManyToMany(mappedBy = "rxes")
-    private List<Menu> menus;
-
     public int getId() {
         return id;
     }
