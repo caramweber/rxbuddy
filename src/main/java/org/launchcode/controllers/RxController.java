@@ -11,6 +11,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("rx")
@@ -109,6 +111,29 @@ public class RxController {
         rx.setPharmnum(newRx.getPharmnum());
         rxDao.save(rx);
         return "redirect:";
+
+    }
+
+    @RequestMapping(value = "search", method = RequestMethod.POST)
+    public String search(@RequestParam(value = "search") String q, Model model) {
+        List<Rx> searchResults = new ArrayList<>();
+        /*try {
+            searchResults = searchservice.fuzzySearch(q);
+
+        } catch (Exception ex) {
+            System.out.println("No Results");
+        }*/
+
+        for (Rx rx : rxDao.findAll()) {
+            if(rx.getName().toLowerCase().contains(q.toLowerCase()) ||
+                rx.getDocname().toLowerCase().contains(q.toLowerCase()) ||
+                rx.getPharmname().toLowerCase().contains(q.toLowerCase())){
+                searchResults.add(rx);
+            }
+        }
+
+        model.addAttribute("rxes", searchResults);
+        return "rx/search";
 
     }
 

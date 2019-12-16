@@ -12,9 +12,17 @@
 <nav th:fragment="navigation">
     <a href="/rx">Home</a> |
     <a href="/category">Categories</a> |
+    <form  action="/rx/search" method="post">
+        <div>
+            <input name="search" id="search" type="text" placeholder="Search"/>
+        </div>
+        <input type="submit"  value="Search" />
+    </form>
     <br/>
     <a href="/Log Out">Log Out</a>
 </nav>
+
+
 
 <nav th:fragment="rxnavigation">
     <a href="/rx/add">Add</a> |
